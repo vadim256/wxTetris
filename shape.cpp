@@ -2,39 +2,43 @@
 #include <cstdlib>
 #include <algorithm>
 
+const int Shape::Rows;
+const int Shape::Cols;
+const int Shape::NShapes;
+
 Shape::Shape() {
     SetShape(Tetrominoes::NoShape);
 }
-
-Shape::~Shape(){ }
 
 Shape::Tetrominoes Shape::GetShape() const {
     return pieceShape;
 }
 
 void Shape::SetShape(Tetrominoes shape) {
-    using std::array;
-    static const array<array<array<short, 2>, 4>, 8> coordsTable {
-        array<array<short, 2>, 4>({0,0}, {0,0}, {0,0}, {0,0}),
-        array<array<short, 2>, 4>({0,-1}, {0,0}, {-1,0}, {-1,1}),
-        array<array<short, 2>, 4>({0,-1}, {0,0}, {1,0}, {1,1}),
-        array<array<short, 2>, 4>({0,-1}, {0,0}, {0,1}, {0,1}),
-        array<array<short, 2>, 4>({-1,0}, {0,0}, {1,0}, {0,1}),
-        array<array<short, 2>, 4>({0, 0}, {1,0}, {0,1}, {1,1}),
-        array<array<short, 2>, 4>({-1,-1}, {0,-1}, {0,0}, {0,1}),
-        array<array<short, 2>, 4>({1,-1}, {0,-1}, {0,0}, {0,1})
+    
+    static const int coordsTable[NShapes][Rows][Cols] = {
+        {{0,0},{0,0},{0,0},{0,0}},
+        {{0,-1},{0,0},{-1,0},{-1,1}},
+        {{0,-1},{0,0},{1,0},{1,1}},
+        {{0,-1},{0,0},{0,1},{0,1}},
+        {{-1,0},{0,0},{1,0},{0,1}},
+        {{0,0},{1,0},{0,1},{1,1}},
+        {{-1,-1},{0,-1},{0,0},{0,1}},
+        {{1,-1},{0,-1},{0,0},{0,1}}
     };
-    for(int i = 0; i < 4; ++i){
-        for(int j = 0; j < 2; ++j){
-            coord[i][j] = coordsTable[static_cast<int>(shape)][i][j];
+
+    for(int x = 0; x < Rows; ++x){
+        for(int y = 0; y < Cols; ++y){
+            coord[x][y] = coordsTable[static_cast<int>(shape)][x][y];
         }
     }
     pieceShape = shape;
 }
 
 void Shape::SetRandomShape(){
-    auto index = std::rand()%7+1;
-    this->SetShape(Tetrominoes(index));
+    using std::rand;
+    auto select_shape = rand()%7+1;
+    this->SetShape(Tetrominoes(select_shape));
 }
 
 int Shape::x(int index) const {
