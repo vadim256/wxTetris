@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Tetris" />
+		<Option pch_mode="0" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Tetris" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="`wx-config  --version=3.1 --static=no --unicode=yes --debug=yes --cflags`" />
+				</Compiler>
+				<Linker>
+					<Add option="`wx-config  --version=3.1 --static=no --unicode=yes --debug=yes --libs`" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Tetris" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="`wx-config  --version=3.1 --static=no --unicode=yes --debug=no --cflags`" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="`wx-config  --version=3.1 --static=no --unicode=yes --debug=no --libs`" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Winvalid-pch" />
+			<Add option="-include wx_pch.h" />
+			<Add option="-DWX_PRECOMP" />
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="TetrisApp.cpp" />
+		<Unit filename="TetrisApp.h" />
+		<Unit filename="TetrisMain.cpp" />
+		<Unit filename="TetrisMain.h" />
+		<Unit filename="wx_pch.h">
+			<Option compile="1" />
+			<Option weight="0" />
+		</Unit>
+		<Unit filename="wxsmith/Tetrisframe.wxs" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<lib_finder disable_auto="1" />
+			<wxsmith version="1">
+				<gui name="wxWidgets" src="TetrisApp.cpp" main="TetrisFrame" init_handlers="necessary" language="CPP" />
+				<resources>
+					<wxFrame wxs="wxsmith/Tetrisframe.wxs" src="TetrisMain.cpp" hdr="TetrisMain.h" fwddecl="0" i18n="1" name="TetrisFrame" language="CPP" />
+				</resources>
+			</wxsmith>
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

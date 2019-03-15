@@ -1,0 +1,6 @@
+/bin
+/obj
+/wx_pch.h.gch
+*.layout
+*.[oa]
+
