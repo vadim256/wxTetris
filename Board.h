@@ -1,17 +1,28 @@
+/***************************************************************
+ * Name:      Board.h
+ * Purpose:   The canvas on which the player will act
+ * Author:    Kondratyuk Vadim (kvadiml256@gmail.com)
+ * Created:   2019-03-15
+ * Copyright: Kondratyuk Vadim (github.com/vadim256)
+ * License:   GNU General Public License 3.0
+ **************************************************************/
+
 #pragma once
+
 #include "Shape.h"
-#include <wx/wx.h>
-
-#include <wx/panel.h>
-#include <wx/statusbar.h>
-#include <wx/event.h>
 #include <wx/frame.h>
-
-
+#include <wx/panel.h>
+#include <wx/statusbr.h>
+#include <wx/event.h>
+#include <wx/dcclient.h>
+#include <wx/timer.h>
 
 
 struct Board : public wxPanel {
-    Board(wxFrame *);
+    Board() = default;
+    explicit Board(wxFrame *);
+    ~Board();
+    
     void Start();
     void Pause();
     void LinesRemovedChanged(int);
@@ -19,11 +30,13 @@ struct Board : public wxPanel {
     void OnPaint(wxPaintEvent &);
     void OnKeyDown(wxKeyEvent &);
     void OnTimer(wxCommandEvent &);
+    using Shape::Tetrominoes;
 
 private:
     enum : unsigned {
         BoardWidth = 10, BoardHeight = 22
     };
+
     Tetrominoes & ShapeAt(int, int);
     int SquareWidth() const;
     int SquareHeight() const;
@@ -35,13 +48,14 @@ private:
     void RemoveFullLines();
     void NewPiece();
     bool TryMove(const Shape &, int, int);
-    void DrawSquare(wxPaintDC & dc, int, int, Tetrominoes);
+    void DrawSquare(wxPaintDC &, int, int, Tetrominoes);
 
     wxTimer * timer;
     Shape curPiece;
-    Tetrominoes board[BoardWidth*BoardHeight];
-    wxStatusBar * m_StatusGame;
     bool isStarted, isPaused, isFallingFinished;
     int curX, curY, numLinesRemoved;
+    
+    Tetrominoes board[BoardWidth*BoardHeight];
+    wxStatusBar * m_StatusGame;
 
 };

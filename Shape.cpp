@@ -1,3 +1,12 @@
+/***************************************************************
+ * Name:      Shape.cpp
+ * Purpose:   The class is intended for the creation of tetris figures
+ * Author:    Kondratyuk Vadim (kvadiml256@gmail.com)
+ * Created:   2019-03-15
+ * Copyright: Kondratyuk Vadim (github.com/vadim256)
+ * License:   GNU General Public License 3.0
+ **************************************************************/
+
 #include "Shape.h"
 #include <cstdlib>
 #include <algorithm>

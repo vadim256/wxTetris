@@ -1,5 +1,13 @@
-#pragma once
+/***************************************************************
+ * Name:      Shape.h
+ * Purpose:   The class is intended for the creation of tetris figures
+ * Author:    Kondratyuk Vadim (kvadiml256@gmail.com)
+ * Created:   2019-03-15
+ * Copyright: Kondratyuk Vadim (github.com/vadim256)
+ * License:   GNU General Public License 3.0
+ **************************************************************/
 
+#pragma once
 #include <array>
 
 struct Shape {
@@ -38,4 +46,5 @@ struct Shape {
 
     Tetrominoes pieceShape;
     Array2d coord;
+
 };

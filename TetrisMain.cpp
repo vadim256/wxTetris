@@ -4,11 +4,12 @@
  * Author:    Kondratyuk Vadim (kvadiml256@gmail.com)
  * Created:   2019-03-15
  * Copyright: Kondratyuk Vadim (github.com/vadim256)
- * License:
+ * License:   GNU General Public License 3.0
  **************************************************************/
 
 #include "wx_pch.h"
 #include "TetrisMain.h"
+
 #include <wx/msgdlg.h>
 
 //(*InternalHeaders(TetrisFrame)
@@ -73,22 +74,22 @@ TetrisFrame::TetrisFrame(wxWindow* parent,wxWindowID id)
     Menu2->Append(MenuItem2);
     MenuBar1->Append(Menu2, _("Help"));
     SetMenuBar(MenuBar1);
-    StatusBar1 = new wxStatusBar(this, ID_STATUSBAR1, 0, _T("ID_STATUSBAR1"));
-    int __wxStatusBarWidths_1[1] = { -1 };
-    int __wxStatusBarStyles_1[1] = { wxSB_NORMAL };
-    StatusBar1->SetFieldsCount(1,__wxStatusBarWidths_1);
-    StatusBar1->SetStatusStyles(1,__wxStatusBarStyles_1);
-    SetStatusBar(StatusBar1);
-
+    
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&TetrisFrame::OnQuit);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&TetrisFrame::OnAbout);
     //*)
+    StatusBar1 = CreateStatusBar();
+    StatusBar1->SetStatusText(wxT("0"));
+    board = new Board(this);
+    board->SetFocus();
+    board->Start();
 }
 
 TetrisFrame::~TetrisFrame()
 {
     //(*Destroy(TetrisFrame)
     //*)
+    delete board;
 }
 
 void TetrisFrame::OnQuit(wxCommandEvent& event)

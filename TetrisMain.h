@@ -4,7 +4,7 @@
  * Author:    Kondratyuk Vadim (kvadiml256@gmail.com)
  * Created:   2019-03-15
  * Copyright: Kondratyuk Vadim (github.com/vadim256)
- * License:
+ * License:   GNU General Public License 3.0
  **************************************************************/
 
 #ifndef TETRISMAIN_H
@@ -15,6 +15,7 @@
 #include <wx/menu.h>
 #include <wx/statusbr.h>
 //*)
+#include "Board.h"
 
 class TetrisFrame: public wxFrame
 {
@@ -39,7 +40,7 @@ class TetrisFrame: public wxFrame
         //(*Declarations(TetrisFrame)
         wxStatusBar* StatusBar1;
         //*)
-
+        Board * board;
         DECLARE_EVENT_TABLE()
 };
 
